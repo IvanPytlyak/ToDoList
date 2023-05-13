@@ -2,20 +2,42 @@ import React, { useState } from "react";
 import { AddCard } from "../../containers/Card/AddCard";
 import { InputCard } from "../../components/InputCard/InputCard";
 import { Button } from "../../components/Button/Button";
+import { PostItem } from "../../components/PostItem/PostItem";
+import { PostList } from "../../components/PostsList/PostList";
+
+import styles from "./Main.module.scss";
 
 export const Main = (props) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+
+  const [posts, setPosts] = useState([]);
+
   const addNewItem = (event) => {
     event.preventDefault();
-    console.log(title, description);
+    const newPost = {
+      id: Date.now(),
+      title,
+      description,
+    };
+    setPosts([...posts, newPost]);
+    setTitle("");
+    setDescription(""); // что за двустороннее связывание и почему интпуты не чисятся?
+  };
+
+  const removePosts = (post) => {
+    setPosts(posts.filter((p) => p.id !== post.id)); // что это за "p"??? как это работает?
   };
 
   return (
-    <AddCard
-      runInputTitleUpper={setTitle}
-      runInputDescriptionUpper={setDescription}
-      runButonFunctionUpper={addNewItem}
-    />
+    <div className={styles.wrap}>
+      <AddCard
+        runInputTitleUpper={setTitle}
+        runInputDescriptionUpper={setDescription}
+        runButonFunctionUpper={addNewItem}
+      />
+      <PostList posts={posts} remove={removePosts} />
+      {/* строка 39 - не работает remove={removePosts} из-за этой строки перестала работать кнопка добавления */}
+    </div>
   );
 };
