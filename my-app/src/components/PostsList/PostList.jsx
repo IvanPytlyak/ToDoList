@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./PostList.module.scss";
 import { Button } from "../Button/Button";
 import { PostItem } from "../PostItem/PostItem";
+import { Modal } from "../../containers/Modal/Modal";
 
 export const PostList = (props) => {
   return (

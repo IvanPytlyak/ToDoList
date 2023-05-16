@@ -7,7 +7,7 @@ import { PostList } from "../../components/PostsList/PostList";
 
 import styles from "./Main.module.scss";
 
-export const Main = (props) => {
+export const Main = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -23,6 +23,7 @@ export const Main = (props) => {
     setPosts([...posts, newPost]);
     setTitle("");
     setDescription(""); // что за двустороннее связывание и почему интпуты не чисятся?
+    // event.target.reset(); //значение по умолчанию доступен только для формы
   };
 
   const removePosts = (post) => {
@@ -35,6 +36,8 @@ export const Main = (props) => {
         runInputTitleUpper={setTitle}
         runInputDescriptionUpper={setDescription}
         runButonFunctionUpper={addNewItem}
+        title={title}
+        description={description}
       />
       <PostList posts={posts} remove={removePosts} />
       {/* строка 39 - не работает remove={removePosts} из-за этой строки перестала работать кнопка добавления */}

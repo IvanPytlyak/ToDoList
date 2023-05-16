@@ -6,6 +6,7 @@ export const InputCard = (props) => {
       type="text"
       placeholder={props.placeholder}
       onChange={props.onChangeHandler}
+      value={props.value}
     />
   );
 };

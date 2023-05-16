@@ -1,0 +1,14 @@
+.visible {
+    width: 400px ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid gray;
+    box-shadow: 2px 2px 2px 2px greenyellow;
+    margin: 15px auto;
+    background-color: wheat;
+}
+
+.hidden {
+    display: none;
+}
